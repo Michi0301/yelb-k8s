@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: yelp-ingress
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+  namespace: yelb
+spec:
+  rules:
+  - host: yelb.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: yelb-ui
+            port:
+              number: 8080
